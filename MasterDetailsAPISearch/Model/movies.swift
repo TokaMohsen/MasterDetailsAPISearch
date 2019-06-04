@@ -8,7 +8,7 @@
 
 import Foundation
 
-class movies: Codable  {
+struct movies: Codable  {
     var title : String!
     var year : Int?
     var cast : [String]?

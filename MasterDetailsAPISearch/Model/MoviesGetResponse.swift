@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MoviesGetResponse : Codable{
+class MoviesGetResponse : Codable{
  
     var movies : [movies] = []
 }
