@@ -9,17 +9,13 @@
 import UIKit
 
 
-enum Status: String {
-    case collapsed
-    case expanded
-}
-
 class CustomTableViewCell: UITableViewCell {
     @IBOutlet var movieRating: UILabel!
     @IBOutlet var movieYear: UILabel!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var moviePoster: UIImageView!
 
+    @IBOutlet var cellContentView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,6 +27,7 @@ class CustomTableViewCell: UITableViewCell {
         self.movieYear.text = String(movieYear)
         self.moviePoster.image = UIImage(named: "movie.jpg")
         //self.state = cellState
+        self.cellContentView.layer.cornerRadius = 5
     }
 
 }

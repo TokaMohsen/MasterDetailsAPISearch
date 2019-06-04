@@ -50,6 +50,7 @@
                         </subviews>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="8zG-nh-ofh" secondAttribute="trailing" constant="10" id="0Vm-9C-3kF"/>
                     <constraint firstItem="L6a-Ev-6Pv" firstAttribute="centerY" secondItem="8zG-nh-ofh" secondAttribute="centerY" id="Q85-vT-BXk"/>
@@ -61,6 +62,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cellContentView" destination="H2p-sc-9uM" id="Off-Lb-9bM"/>
                 <outlet property="moviePoster" destination="L6a-Ev-6Pv" id="esc-Jw-ztB"/>
                 <outlet property="movieRating" destination="dSo-PA-JXg" id="O0g-gU-ykI"/>
                 <outlet property="movieTitle" destination="jdW-Tb-wOX" id="LBj-bZ-LWH"/>

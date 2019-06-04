@@ -22,6 +22,8 @@
 		EF0B295C22A566B200FA2820 /* MoviesGetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B295A22A566B200FA2820 /* MoviesGetResponse.swift */; };
 		EF0B296022A5D50D00FA2820 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF0B295E22A5D50D00FA2820 /* CustomTableViewCell.xib */; };
 		EF0B296122A5D50D00FA2820 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B295F22A5D50D00FA2820 /* CustomTableViewCell.swift */; };
+		EF0B296722A6BE7600FA2820 /* MasterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B296622A6BE7600FA2820 /* MasterPresenter.swift */; };
+		EF0B296922A6D6FE00FA2820 /* SortList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B296822A6D6FE00FA2820 /* SortList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		EF0B295A22A566B200FA2820 /* MoviesGetResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesGetResponse.swift; sourceTree = "<group>"; };
 		EF0B295E22A5D50D00FA2820 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		EF0B295F22A5D50D00FA2820 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		EF0B296622A6BE7600FA2820 /* MasterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPresenter.swift; sourceTree = "<group>"; };
+		EF0B296822A6D6FE00FA2820 /* SortList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,8 @@
 				EF0B292E22A55E7800FA2820 /* Info.plist */,
 				EF0B295022A5641C00FA2820 /* movies.json */,
 				EF0B295622A5663100FA2820 /* Constants.swift */,
+				EF0B296622A6BE7600FA2820 /* MasterPresenter.swift */,
+				EF0B296822A6D6FE00FA2820 /* SortList.swift */,
 			);
 			path = MasterDetailsAPISearch;
 			sourceTree = "<group>";
@@ -312,6 +318,8 @@
 				EF0B292522A55E7700FA2820 /* DetailViewController.swift in Sources */,
 				EF0B292322A55E7700FA2820 /* MasterViewController.swift in Sources */,
 				EF0B295522A565C700FA2820 /* MoviesService.swift in Sources */,
+				EF0B296722A6BE7600FA2820 /* MasterPresenter.swift in Sources */,
+				EF0B296922A6D6FE00FA2820 /* SortList.swift in Sources */,
 				EF0B295B22A566B200FA2820 /* movies.swift in Sources */,
 				EF0B292122A55E7700FA2820 /* AppDelegate.swift in Sources */,
 			);
