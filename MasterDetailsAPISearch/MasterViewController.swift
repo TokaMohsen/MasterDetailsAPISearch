@@ -45,63 +45,22 @@ class MasterViewController: UITableViewController {
        // objects.insert(NSDate(), at: 0)
        // let indexPath = IndexPath(row: 0, section: 0)
         //tableView.insertRows(at: [indexPath], with: .automatic)
+        //tableView.reloadData()
     }
     
     func loadData() {
-        MoviesService.sharedInstance().cacheMovies(completionBlock: { (cachedData) in
-            print(cachedData)
-            if let cached = cachedData?.movies
-            {
-                print(cached)
-            }
-//            else
-//            {
-//
-//                MoviesService.sharedInstance().loadJson(filename: moviesJsonFileName) { (data) in
-//                     print(data)
-//                    if let downloadMoviesList = data?.movies
-//                    {
-//                        print(downloadMoviesList)
-//                        //  let resultsList = downloadMoviesList.movies
-//                        //                let searcResults = SearchPresenter.search(objectResponse: resultsList, title: enteredTitle)
-//
-//                    }
-//
-//                }
-//            }
-        })
-        
-        MoviesService.sharedInstance().loadJson(filename: moviesJsonFileName) { (data) in
-            if let downloadMoviesList = data?.movies
-            {
-                print(downloadMoviesList)
-                self.objects = downloadMoviesList
-                //                let searcResults = SearchPresenter.search(objectResponse: resultsList, title: enteredTitle)
-                
-            }
-            
-        }
- 
-    }
-    // MARK: AlertView
-    func showAlert(msg : String){
-        let alert =  UIAlertController(title: "Alert", message: msg, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            switch action.style{
-            case .default:
-                print("default")
-                
-            case .cancel:
-                print("cancel")
-                
-            case .destructive:
-                print("destructive")
-                
-                
-            }}))
-        self.present(alert, animated: true, completion: nil)
-    }
+        MoviesService.sharedInstance().loadcachedMovies(completionBlock: { (cachedData) in
+                    if let cachedMovieList = cachedData
+                    {
+                        self.objects = cachedMovieList
+                      
+                    }
 
+//                //                let searcResults = SearchPresenter.search(objectResponse: resultsList, title: enteredTitle)
+ 
+    })
+    }
+    
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

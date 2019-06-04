@@ -11,7 +11,7 @@ import UIKit
 
 class MoviesService {
     
-    let moviesCache = NSCache<AnyObject, AnyObject>()
+    let moviesCache = NSCache<NSString, MoviesGetResponse>()
     
     private static var serviceSharedInstance: MoviesService = {
         let sharedService = MoviesService()
@@ -23,37 +23,38 @@ class MoviesService {
         return  serviceSharedInstance
     }
     
-    func loadJson(filename fileName: String , completionBlock : @escaping (_ success: MoviesGetResponse?) -> Void)
+    func fetchJson(filename fileName: String , completionBlock : @escaping (_ success: MoviesGetResponse?) -> Void)
     {
-//        if let moviesFromCache = moviesCache.object(forKey: moviesJsonFileName as AnyObject) as? MoviesGetResponse {
-//           // self.image = imageFromCache
-//            completionBlock(moviesFromCache)
-//
-//        }
-//        else
-//        {
-//
-            if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
-                do {
-                    let data = try Data(contentsOf: url)
-                    
-                    let decoder = JSONDecoder()
-                    let movies = try decoder.decode(MoviesGetResponse.self, from: data)
-                    
-                    moviesCache.setObject(movies as AnyObject, forKey: moviesJsonFileName as AnyObject)
-                    completionBlock(movies)
-                } catch {
-                    print("error:\(error)")
+                if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
+                    do {
+                        let data = try Data(contentsOf: url)
+                        
+                        let decoder = JSONDecoder()
+                        let movies = try decoder.decode(MoviesGetResponse.self, from: data)
+                        
+                        self.moviesCache.setObject(movies , forKey: moviesJsonFileName as NSString )
+                        completionBlock(movies)
+                    } catch {
+                        print("error:\(error)")
+                    }
+                }
+    }
+    
+    
+    func loadcachedMovies(completionBlock : @escaping (_ success: [movies]?) -> Void) {
+        if let moviesFromCache = moviesCache.object(forKey: moviesJsonFileName as NSString) {
+            completionBlock(moviesFromCache.movies)
+        }
+        else{
+            fetchJson(filename: moviesJsonFileName) { (data) in
+                if let downloadMoviesList = data?.movies
+                {
+                    completionBlock(downloadMoviesList)
                 }
             }
-        //}
-        
-    }
-    
-    
-    func cacheMovies(completionBlock : @escaping (_ success: MoviesGetResponse?) -> Void) {
-        if let moviesFromCache = moviesCache.object(forKey: moviesJsonFileName as AnyObject) as? MoviesGetResponse {
-             completionBlock(moviesFromCache)
         }
     }
+    
+    
 }
+
