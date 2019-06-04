@@ -2,7 +2,7 @@
 //  MasterViewController.swift
 //  MasterDetailsAPISearch
 //
-//  Created by ToqaDev on 6/3/19.
+//  Created by ToqaMohsen on 6/3/19.
 //  Copyright © 2019 Toqa. All rights reserved.
 //
 
@@ -11,20 +11,28 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
-
-
+    var objects = [movies]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        navigationItem.leftBarButtonItem = editButtonItem
+        //navigationItem.leftBarButtonItem = editButtonItem
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        navigationItem.rightBarButtonItem = addButton
+      //  let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+      //  navigationItem.rightBarButtonItem = addButton
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 300
+//        tableView.tableFooterView = UIView()
+//
+//        self.view.addSubview(tableView)
+
+        loadData()
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -34,9 +42,64 @@ class MasterViewController: UITableViewController {
 
     @objc
     func insertNewObject(_ sender: Any) {
-        objects.insert(NSDate(), at: 0)
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
+       // objects.insert(NSDate(), at: 0)
+       // let indexPath = IndexPath(row: 0, section: 0)
+        //tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
+    func loadData() {
+        MoviesService.sharedInstance().cacheMovies(completionBlock: { (cachedData) in
+            print(cachedData)
+            if let cached = cachedData?.movies
+            {
+                print(cached)
+            }
+//            else
+//            {
+//
+//                MoviesService.sharedInstance().loadJson(filename: moviesJsonFileName) { (data) in
+//                     print(data)
+//                    if let downloadMoviesList = data?.movies
+//                    {
+//                        print(downloadMoviesList)
+//                        //  let resultsList = downloadMoviesList.movies
+//                        //                let searcResults = SearchPresenter.search(objectResponse: resultsList, title: enteredTitle)
+//
+//                    }
+//
+//                }
+//            }
+        })
+        
+        MoviesService.sharedInstance().loadJson(filename: moviesJsonFileName) { (data) in
+            if let downloadMoviesList = data?.movies
+            {
+                print(downloadMoviesList)
+                self.objects = downloadMoviesList
+                //                let searcResults = SearchPresenter.search(objectResponse: resultsList, title: enteredTitle)
+                
+            }
+            
+        }
+ 
+    }
+    // MARK: AlertView
+    func showAlert(msg : String){
+        let alert =  UIAlertController(title: "Alert", message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+                
+                
+            }}))
+        self.present(alert, animated: true, completion: nil)
     }
 
     // MARK: - Segues
@@ -44,9 +107,9 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+                let object = objects[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
+                controller.detailItem = object.title
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -64,10 +127,13 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CustomTableViewCell
+        else {
+            return UITableViewCell()}
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let object = objects[indexPath.row]
+        cell.cellConfigruration(movieTitle: object.title, movieRating: object.rating ?? 0, movieYear: object.year ?? 0, moviePosterPath: "")
+      //  cell.textLabel!.text = object.title
         return cell
     }
 

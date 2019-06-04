@@ -2,7 +2,7 @@
 //  MasterDetailsAPISearchTests.swift
 //  MasterDetailsAPISearchTests
 //
-//  Created by ToqaDev on 6/3/19.
+//  Created by ToqaMohsen on 6/3/19.
 //  Copyright © 2019 Toqa. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  DetailViewController.swift
 //  MasterDetailsAPISearch
 //
-//  Created by ToqaDev on 6/3/19.
+//  Created by ToqaMohsen on 6/3/19.
 //  Copyright © 2019 Toqa. All rights reserved.
 //
 
@@ -17,7 +17,7 @@ class DetailViewController: UIViewController {
         // Update the user interface for the detail item.
         if let detail = detailItem {
             if let label = detailDescriptionLabel {
-                label.text = detail.description
+                label.text = detail
             }
         }
     }
@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
         configureView()
     }
 
-    var detailItem: NSDate? {
+    var detailItem: String? {
         didSet {
             // Update the view.
             configureView()

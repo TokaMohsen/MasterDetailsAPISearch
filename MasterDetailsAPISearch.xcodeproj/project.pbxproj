@@ -15,6 +15,13 @@
 		EF0B292D22A55E7800FA2820 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF0B292B22A55E7800FA2820 /* LaunchScreen.storyboard */; };
 		EF0B293822A55E7800FA2820 /* MasterDetailsAPISearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B293722A55E7800FA2820 /* MasterDetailsAPISearchTests.swift */; };
 		EF0B294322A55E7800FA2820 /* MasterDetailsAPISearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B294222A55E7800FA2820 /* MasterDetailsAPISearchUITests.swift */; };
+		EF0B295122A5641C00FA2820 /* movies.json in Resources */ = {isa = PBXBuildFile; fileRef = EF0B295022A5641C00FA2820 /* movies.json */; };
+		EF0B295522A565C700FA2820 /* MoviesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B295422A565C700FA2820 /* MoviesService.swift */; };
+		EF0B295722A5663100FA2820 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B295622A5663100FA2820 /* Constants.swift */; };
+		EF0B295B22A566B200FA2820 /* movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B295922A566B200FA2820 /* movies.swift */; };
+		EF0B295C22A566B200FA2820 /* MoviesGetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B295A22A566B200FA2820 /* MoviesGetResponse.swift */; };
+		EF0B296022A5D50D00FA2820 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF0B295E22A5D50D00FA2820 /* CustomTableViewCell.xib */; };
+		EF0B296122A5D50D00FA2820 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B295F22A5D50D00FA2820 /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,13 @@
 		EF0B293E22A55E7800FA2820 /* MasterDetailsAPISearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MasterDetailsAPISearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF0B294222A55E7800FA2820 /* MasterDetailsAPISearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterDetailsAPISearchUITests.swift; sourceTree = "<group>"; };
 		EF0B294422A55E7800FA2820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF0B295022A5641C00FA2820 /* movies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = movies.json; sourceTree = "<group>"; };
+		EF0B295422A565C700FA2820 /* MoviesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesService.swift; sourceTree = "<group>"; };
+		EF0B295622A5663100FA2820 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EF0B295922A566B200FA2820 /* movies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = movies.swift; sourceTree = "<group>"; };
+		EF0B295A22A566B200FA2820 /* MoviesGetResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesGetResponse.swift; sourceTree = "<group>"; };
+		EF0B295E22A5D50D00FA2820 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		EF0B295F22A5D50D00FA2820 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +113,9 @@
 		EF0B291F22A55E7700FA2820 /* MasterDetailsAPISearch */ = {
 			isa = PBXGroup;
 			children = (
+				EF0B295D22A5D4F200FA2820 /* CustomViews */,
+				EF0B295822A566A300FA2820 /* Model */,
+				EF0B295322A5658C00FA2820 /* Services */,
 				EF0B292022A55E7700FA2820 /* AppDelegate.swift */,
 				EF0B292222A55E7700FA2820 /* MasterViewController.swift */,
 				EF0B292422A55E7700FA2820 /* DetailViewController.swift */,
@@ -106,6 +123,8 @@
 				EF0B292922A55E7800FA2820 /* Assets.xcassets */,
 				EF0B292B22A55E7800FA2820 /* LaunchScreen.storyboard */,
 				EF0B292E22A55E7800FA2820 /* Info.plist */,
+				EF0B295022A5641C00FA2820 /* movies.json */,
+				EF0B295622A5663100FA2820 /* Constants.swift */,
 			);
 			path = MasterDetailsAPISearch;
 			sourceTree = "<group>";
@@ -126,6 +145,32 @@
 				EF0B294422A55E7800FA2820 /* Info.plist */,
 			);
 			path = MasterDetailsAPISearchUITests;
+			sourceTree = "<group>";
+		};
+		EF0B295322A5658C00FA2820 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EF0B295422A565C700FA2820 /* MoviesService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EF0B295822A566A300FA2820 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EF0B295A22A566B200FA2820 /* MoviesGetResponse.swift */,
+				EF0B295922A566B200FA2820 /* movies.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF0B295D22A5D4F200FA2820 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				EF0B295F22A5D50D00FA2820 /* CustomTableViewCell.swift */,
+				EF0B295E22A5D50D00FA2820 /* CustomTableViewCell.xib */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +279,8 @@
 			files = (
 				EF0B292D22A55E7800FA2820 /* LaunchScreen.storyboard in Resources */,
 				EF0B292A22A55E7800FA2820 /* Assets.xcassets in Resources */,
+				EF0B295122A5641C00FA2820 /* movies.json in Resources */,
+				EF0B296022A5D50D00FA2820 /* CustomTableViewCell.xib in Resources */,
 				EF0B292822A55E7700FA2820 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,8 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF0B295722A5663100FA2820 /* Constants.swift in Sources */,
+				EF0B295C22A566B200FA2820 /* MoviesGetResponse.swift in Sources */,
+				EF0B296122A5D50D00FA2820 /* CustomTableViewCell.swift in Sources */,
 				EF0B292522A55E7700FA2820 /* DetailViewController.swift in Sources */,
 				EF0B292322A55E7700FA2820 /* MasterViewController.swift in Sources */,
+				EF0B295522A565C700FA2820 /* MoviesService.swift in Sources */,
+				EF0B295B22A566B200FA2820 /* movies.swift in Sources */,
 				EF0B292122A55E7700FA2820 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
