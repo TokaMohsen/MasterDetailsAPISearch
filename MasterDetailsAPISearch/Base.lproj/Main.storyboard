@@ -72,32 +72,22 @@
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LJT-wT-fys">
                                 <rect key="frame" x="20" y="275" width="335" height="342"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wo2-Ik-BRO">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="150" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imgCell" id="050-2f-RLY">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imgCell" id="050-2f-RLY" customClass="customCollectionViewCell" customModule="MasterDetailsAPISearch" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0lh-Cc-fFb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                </imageView>
-                                            </subviews>
                                         </view>
-                                        <constraints>
-                                            <constraint firstItem="0lh-Cc-fFb" firstAttribute="top" secondItem="050-2f-RLY" secondAttribute="top" id="8Gb-FS-2l2"/>
-                                            <constraint firstItem="0lh-Cc-fFb" firstAttribute="leading" secondItem="050-2f-RLY" secondAttribute="leading" id="Mge-zx-hOX"/>
-                                            <constraint firstAttribute="bottom" secondItem="0lh-Cc-fFb" secondAttribute="bottom" id="N51-aD-Vma"/>
-                                            <constraint firstAttribute="trailing" secondItem="0lh-Cc-fFb" secondAttribute="trailing" id="WOM-Zc-rB4"/>
-                                        </constraints>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -117,6 +107,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
+                        <outlet property="collectionView" destination="LJT-wT-fys" id="Sgk-aZ-ZnW"/>
                         <outlet property="detailCastLabel" destination="Dl2-sI-WMH" id="l4f-18-bXq"/>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="7vj-QY-yH3"/>
                         <outlet property="detailGenresLabel" destination="Ioo-cC-vdA" id="TBX-34-LMf"/>

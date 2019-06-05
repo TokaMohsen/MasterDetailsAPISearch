@@ -25,7 +25,7 @@ class CustomTableViewCell: UITableViewCell {
         self.movieTitle.text = movieTitle
         self.movieRating.text = String(movieRating)
         self.movieYear.text = String(movieYear)
-        self.moviePoster.image = UIImage(named: "movie.jpg")
+        self.moviePoster.image = UIImage(named: "movie")
         //self.state = cellState
         self.cellContentView.layer.cornerRadius = 5
     }

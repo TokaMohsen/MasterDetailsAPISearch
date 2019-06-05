@@ -29,6 +29,8 @@
 		EF0B296922A6D6FE00FA2820 /* SortList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B296822A6D6FE00FA2820 /* SortList.swift */; };
 		EF0B297022A8089B00FA2820 /* FlickerAPISearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B296F22A8089B00FA2820 /* FlickerAPISearch.swift */; };
 		EF0B297222A808E100FA2820 /* FlickerPicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B297122A808E100FA2820 /* FlickerPicResponse.swift */; };
+		EF0B297522A86B8200FA2820 /* customCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B297322A86B8200FA2820 /* customCollectionViewCell.swift */; };
+		EF0B297622A86B8200FA2820 /* customCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF0B297422A86B8200FA2820 /* customCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		EF0B296822A6D6FE00FA2820 /* SortList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortList.swift; sourceTree = "<group>"; };
 		EF0B296F22A8089B00FA2820 /* FlickerAPISearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerAPISearch.swift; sourceTree = "<group>"; };
 		EF0B297122A808E100FA2820 /* FlickerPicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerPicResponse.swift; sourceTree = "<group>"; };
+		EF0B297322A86B8200FA2820 /* customCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customCollectionViewCell.swift; sourceTree = "<group>"; };
+		EF0B297422A86B8200FA2820 /* customCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = customCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +225,8 @@
 			children = (
 				EF0B295F22A5D50D00FA2820 /* CustomTableViewCell.swift */,
 				EF0B295E22A5D50D00FA2820 /* CustomTableViewCell.xib */,
+				EF0B297322A86B8200FA2820 /* customCollectionViewCell.swift */,
+				EF0B297422A86B8200FA2820 /* customCollectionViewCell.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF0B292D22A55E7800FA2820 /* LaunchScreen.storyboard in Resources */,
+				EF0B297622A86B8200FA2820 /* customCollectionViewCell.xib in Resources */,
 				EF0B292A22A55E7800FA2820 /* Assets.xcassets in Resources */,
 				EF0B295122A5641C00FA2820 /* movies.json in Resources */,
 				EF0B296022A5D50D00FA2820 /* CustomTableViewCell.xib in Resources */,
@@ -461,6 +468,7 @@
 				EF0B292322A55E7700FA2820 /* MasterViewController.swift in Sources */,
 				EF0B295522A565C700FA2820 /* MoviesService.swift in Sources */,
 				EF0B296722A6BE7600FA2820 /* MasterPresenter.swift in Sources */,
+				EF0B297522A86B8200FA2820 /* customCollectionViewCell.swift in Sources */,
 				EF0B297022A8089B00FA2820 /* FlickerAPISearch.swift in Sources */,
 				EF0B296922A6D6FE00FA2820 /* SortList.swift in Sources */,
 				EF0B295B22A566B200FA2820 /* movies.swift in Sources */,

@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import SDWebImage
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var detailRatingLabel: UILabel!
     @IBOutlet var detailGenresLabel: UILabel!
     @IBOutlet var detailCastLabel: UILabel!
     @IBOutlet var detailYearLabel: UILabel!
     @IBOutlet var detailDescriptionLabel: UILabel!
     var photos: [FlickerPicResponse] = []
+    
+    let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
     
     func configureView() {
         // Update the user interface for the detail item.
@@ -27,6 +31,9 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        collectionView.register(UINib(nibName: "customCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "imgCell")
+        collectionView.delegate = self
+        collectionView.dataSource = self
         configureView()
         if detailItem != nil
         {
@@ -47,11 +54,21 @@ class DetailViewController: UIViewController {
     // MARK: - Private
     
     private func performSearchWithText(searchText: String) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+       
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        alert.view.addSubview(loadingIndicator)
+        self.present(alert, animated: true, completion: nil)
+        
         FlickerAPISearch.fetchPhotosForSearchText(searchText: searchText, onCompletion: { (error: NSError?, flickrPhotos: [FlickerPicResponse]?) -> Void in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if error == nil {
+               
                 self.photos = flickrPhotos!
+                self.collectionView.reloadData()
+
+
             } else {
                 self.photos = []
                 if (error!.code == FlickerAPISearch.Errors.invalidAccessErrorCode) {
@@ -60,13 +77,10 @@ class DetailViewController: UIViewController {
                     })
                 }
             }
-//            DispatchQueue.main.async(execute: { () -> Void in
-//                self.title = searchText
-//                self.tableView.reloadData()
-//            })
+
         })
+
     }
-    
     private func showErrorAlert() {
         let alertController = UIAlertController(title: "Search Error", message: "Invalid API Key", preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
@@ -75,21 +89,33 @@ class DetailViewController: UIViewController {
     }
    
 }
-extension DetailViewController : UICollectionViewDelegate
+
+
+extension DetailViewController : UICollectionViewDelegate , UICollectionViewDataSource
 {
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "detailCell", for: indexPath) as! collectionCell
-//        let image = myImages[indexPath.row]
-  //  photoImageView.sd_setImage(with: flickrPhoto!.photoUrl as URL!)
-//        cell.imageView.image = image
-//        return cell
-//    }
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2 // you can return as per your requirement
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imgCell", for: indexPath)  as? customCollectionViewCell
+        else {
+            return UICollectionViewCell()
+            
+        }
+        var flickrPhoto : FlickerPicResponse?
+        flickrPhoto = self.photos[indexPath.row]
+        cell.imgView.sd_setImage(with: flickrPhoto?.photoUrl as URL!)
+        self.alert.dismiss(animated: false, completion: nil)
+
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.photos.count
     }
     
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let padding: CGFloat =  50
+        let collectionViewSize = collectionView.frame.size.width - padding
+        
+        return CGSize(width: collectionViewSize/2, height: collectionViewSize/2)
     }
 }
+
