@@ -1,0 +1,6 @@
+framework module Pods_MasterDetailsAPISearchTests {
+  umbrella header "Pods-MasterDetailsAPISearchTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
