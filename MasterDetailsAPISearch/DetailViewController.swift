@@ -22,12 +22,13 @@ class DetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
        if let detail = detailItem {
-        self.detailDescriptionLabel.text = "title"
-            //detail.title
-        //self.detailYearLabel.text?.append(contentsOf: String(detail.year!))
-       // self.DetailRatingLabel.text?.append(contentsOf: String(detail.rating!))
-        self.detailGenresLabel.text = detail.genres![0]
-        self.detailCastLabel.text = detail.cast![0]
+       // self.detailDescriptionLabel.text = "title"
+         let f = detail.title
+//        self.detailYearLabel.text?.append(contentsOf: String(detail.year!))
+//        self.DetailRatingLabel.text?.append(contentsOf: String(detail.rating!))
+        let y = detail.genres![0]
+        //self.detailGenresLabel.text? = detail.genres![0]
+        //self.detailCastLabel.text? = detail.cast![0]
         }
     }
 
@@ -43,33 +44,14 @@ class DetailViewController: UIViewController {
             configureView()
         }
     }
-
-
+   
 }
-
-//extension DetailViewController : UICollectionView {
-//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        //return searches.count
-//        return 2
-//    }
-//
-//    //2
-//    override func collectionView(_ collectionView: UICollectionView,
-//                                 numberOfItemsInSection section: Int) -> Int {
-//        return 2
-//            //searches[section].searchResults.count
-//    }
-//
-//    //3
-//    override func collectionView(
-//        _ collectionView: UICollectionView,
-//        cellForItemAt indexPath: IndexPath
-//        ) -> UICollectionViewCell {
-//        let cell = collectionView
-//            .dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-//        cell.backgroundColor = .black
-//        // Configure the cell
-//        return cell
-//    }
-//}
-
+extension DetailViewController : UICollectionViewDelegate
+{
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "detailCell", for: indexPath) as! collectionCell
+        let image = myImages[indexPath.row]
+        cell.imageView.image = image
+        return cell
+    }
+}

@@ -37,10 +37,11 @@ func merge(_ left: [movies], _ right: [movies]) -> [movies] {
             orderedArray.append(rightElement)
             rightIndex += 1
         } else {
-            orderedArray.append(leftElement)
-            leftIndex += 1
+           
             orderedArray.append(rightElement)
             rightIndex += 1
+            orderedArray.append(leftElement)
+            leftIndex += 1
         }
     }
     
@@ -56,8 +57,19 @@ func merge(_ left: [movies], _ right: [movies]) -> [movies] {
     
     return orderedArray
 }
+    
+    func insertionSort(a: [movies]) -> [movies] {
+        guard a.count > 1 else { return a } // If have 1 or less items, we're already finished
+        
+        var b = a
+        for i in 1..<b.count {
+            var y = i
+            while y > 0 && b[y].rating! < b[y - 1].rating! {
+                b.swapAt(y - 1, y)
+                y -= 1
+            }
+        }
+        return b
+    }
+    
 }
-//
-//let array = [7, 2, 6, 3, 9]
-//
-//print(mergeSort(array))
