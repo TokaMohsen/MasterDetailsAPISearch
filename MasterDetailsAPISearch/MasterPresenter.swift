@@ -43,7 +43,6 @@ class MasterPresenter
                            sortedGroups[key] = Array(slicedList)
                 }
                 
-               // sortedGroups[key] = Array(slicedList)
                 }
                 
             
