@@ -13,6 +13,8 @@ it contain :
 
 5.searching flicker API for photos
 
+6. Unit testing and UI testing
+
 Getting Started
 
 1.Clone the repo and run FlickrSearch.xcodeproj
