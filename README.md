@@ -2,6 +2,16 @@
 Master Details API Search
 
 This application is an example of searching the Flickr API for photos in Swift after searching in json file using search bar and grouping results.
+it contain :
+1. load data in table view from local json file
+
+2. cache parsed response from json file 
+
+3.sorting result using merge sort algorithm 
+
+4.display results in groups 
+
+5.searching flicker API for photos
 
 Getting Started
 
