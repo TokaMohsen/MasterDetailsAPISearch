@@ -18,6 +18,8 @@ class MasterViewController: UITableViewController {
     var hightOfsectionsHeader = 0.0
     var numberOfRowsPerSection = 1
     let sortListObj = SortList()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -126,7 +128,7 @@ class MasterViewController: UITableViewController {
         }
         else
         {
-            self.displayedObjects.updateValue(self.objects, forKey: -1)
+            self.displayedObjects.updateValue(self.objects, forKey: Int.max)
             numberOfsections = 1
             hightOfsectionsHeader = 0.0
 
@@ -155,10 +157,6 @@ extension MasterViewController : UISearchBarDelegate
                 displayedObjects = searcResults
                 hightOfsectionsHeader = 50.0
 
-                for (key, value) in displayedObjects
-                {
-                    displayedObjects[key] = value.sorted(by: { $0.rating! > $1.rating! })
-                }
                 self.tableView.reloadData()
                 tableView.tableFooterView = UIView()
             }

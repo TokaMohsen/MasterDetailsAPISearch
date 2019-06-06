@@ -17,29 +17,36 @@ class MasterPresenter
         var sorted = [movies]()
         var sortedGroups = Dictionary<Int,[movies]>()
         
+        // category with year
+        //return dictionary of key (year) and value (array of movies sorted by rate)
+        
         filteredResults = objectResponse.filter({ $0.title.localizedCaseInsensitiveContains(title)})
         if filteredResults?.count != 0{
-//            let slicedList: Arra
-//               slicedList = filteredResults?[0..<5]
+            var slicedList: Slice<[movies]>
             
-                //filteredResults?.prefix(5)
-            
-            sorted = sortListObj.mergeSort(filteredResults!)
-             var slicedList: Slice<[movies]>
-            if (sorted.count >= 4)
-            {
-               slicedList = (sorted[0..<5])
-            }
-            else
-            {
-                slicedList = (sorted[0..<sorted.count])
-            }
-            
-            var slicedArrayArray: [movies] = Array(slicedList)
+            let slicedArrayArray: [movies] = filteredResults!
             sortedGroups = Dictionary(grouping: slicedArrayArray, by: { $0.year! })
-          
-            // category with year
-            //return dictionary of key (year) and value (array of movies sorted by rate)
+            for (key, _) in sortedGroups
+            {
+                if (sortedGroups[key]?.capacity)! > 1
+                {
+                    sorted = sortListObj.mergeSort( sortedGroups[key]!)
+                    if (sorted.count > 4)
+                    {
+                        slicedList = (sorted[0..<5])
+                    }
+                    else
+                    {
+                        slicedList = (sorted[0..<sorted.count])
+                        
+                    }
+                           sortedGroups[key] = Array(slicedList)
+                }
+                
+               // sortedGroups[key] = Array(slicedList)
+                }
+                
+            
         }
         
         return sortedGroups

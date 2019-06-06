@@ -19,7 +19,6 @@ class DetailViewController: UIViewController {
     @IBOutlet var detailDescriptionLabel: UILabel!
     var photos: [FlickerPicResponse] = []
     
-    let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
     
     func configureView() {
         // Update the user interface for the detail item.
@@ -55,13 +54,9 @@ class DetailViewController: UIViewController {
     
     private func performSearchWithText(searchText: String) {
        
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.gray
-        loadingIndicator.startAnimating();
-        alert.view.addSubview(loadingIndicator)
-        self.present(alert, animated: true, completion: nil)
-        
+       
+     self.AlertViewWithLoadingIndicator()
+
         FlickerAPISearch.fetchPhotosForSearchText(searchText: searchText, onCompletion: { (error: NSError?, flickrPhotos: [FlickerPicResponse]?) -> Void in
             if error == nil {
                
@@ -87,6 +82,20 @@ class DetailViewController: UIViewController {
         alertController.addAction(dismissAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    private func AlertViewWithLoadingIndicator()
+    {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+        alert.view.addSubview(loadingIndicator)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+        alert.addAction(dismissAction)
+        self.present(alert, animated: true, completion: nil)
+    }
    
 }
 
@@ -101,9 +110,17 @@ extension DetailViewController : UICollectionViewDelegate , UICollectionViewData
         }
         var flickrPhoto : FlickerPicResponse?
         flickrPhoto = self.photos[indexPath.row]
-        cell.imgView.sd_setImage(with: flickrPhoto?.photoUrl as URL!)
-        self.alert.dismiss(animated: false, completion: nil)
 
+        SDWebImageManager.shared().imageDownloader?.downloadImage(with: flickrPhoto?.photoUrl as URL!, options: .continueInBackground, progress: nil, completed: {
+            (image:UIImage?, data:Data?, error:Error?, finished:Bool) in
+            if image != nil {
+                cell.imgView.image = image
+            }
+        })
+      
+        if ((self.navigationController?.visibleViewController?.isKind(of: UIAlertController.self))!){
+            self.dismiss(animated: false, completion: nil)
+        }
         return cell
     }
 

@@ -9,6 +9,7 @@
 import Foundation
 class SortList {
 
+    //incase of large arrays
   func mergeSort(_ array: [movies]) -> [movies] {
     guard array.count > 1 else { return array }
     
@@ -57,7 +58,7 @@ func merge(_ left: [movies], _ right: [movies]) -> [movies] {
     
     return orderedArray
 }
-    
+    // incase of small arrays
     func insertionSort(a: [movies]) -> [movies] {
         guard a.count > 1 else { return a } // If have 1 or less items, we're already finished
         

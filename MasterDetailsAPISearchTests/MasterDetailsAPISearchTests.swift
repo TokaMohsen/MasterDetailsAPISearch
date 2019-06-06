@@ -11,8 +11,15 @@ import XCTest
 
 class MasterDetailsAPISearchTests: XCTestCase {
 
+    var sortedlist: SortList!
+    var masterVC: MasterViewController!
+    var masterPresnter : MasterPresenter!
+    
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+//        super.setUp()
+//
+//        masterVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MasterViewController") as! MasterViewController
     }
 
     override func tearDown() {
