@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        collectionView.register(UINib(nibName: "customCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "imgCell")
+        collectionView.register(UINib(nibName: customCollectionCellFileName, bundle: nil), forCellWithReuseIdentifier: imagesCollectionCellIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         configureView()
@@ -103,7 +103,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController : UICollectionViewDelegate , UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imgCell", for: indexPath)  as? customCollectionViewCell
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imagesCollectionCellIdentifier, for: indexPath)  as? customCollectionViewCell
         else {
             return UICollectionViewCell()
             

@@ -22,18 +22,14 @@ class MasterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //navigationItem.leftBarButtonItem = editButtonItem
-        
-        //  let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        //  navigationItem.rightBarButtonItem = addButton
-        
+
         numberOfRowsPerSection = self.displayedObjects.count
         searchBar.delegate = self
-        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: customTableCellFileName, bundle: nil), forCellReuseIdentifier: moviesTableCellIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 300
         
+        //fetching data from local json file
         loadData()
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -46,15 +42,7 @@ class MasterViewController: UITableViewController {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
-    
-    @objc
-    func insertNewObject(_ sender: Any) {
-        // objects.insert(NSDate(), at: 0)
-        // let indexPath = IndexPath(row: 0, section: 0)
-        //tableView.insertRows(at: [indexPath], with: .automatic)
-        //tableView.reloadData()
-    }
-    
+
     func loadData() {
         MoviesService.sharedInstance().loadcachedMovies(completionBlock: { (cachedData) in
             if let cachedMovieList = cachedData
@@ -70,7 +58,7 @@ class MasterViewController: UITableViewController {
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == segueIdentifierToDetailsVC {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let object = Array(displayedObjects.values)[indexPath.section][indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
@@ -88,7 +76,7 @@ class MasterViewController: UITableViewController {
         return numberOfsections
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CustomTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: moviesTableCellIdentifier, for: indexPath) as? CustomTableViewCell
             else {
                 return UITableViewCell()}
         
@@ -116,7 +104,7 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showDetail", sender: self)
+        performSegue(withIdentifier: segueIdentifierToDetailsVC , sender: self)
     }
     
     func setupTableViewDataSource(dataSource :[Int : [movies]]) {

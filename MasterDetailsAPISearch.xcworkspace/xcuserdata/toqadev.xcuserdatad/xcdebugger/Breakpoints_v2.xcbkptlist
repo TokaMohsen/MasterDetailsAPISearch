@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MasterDetailsAPISearch/Services/FlickerAPISearch.swift"
-            timestampString = "581522869.991668"
+            timestampString = "581523605.12319"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "fetchPhotosForSearchText(searchText:onCompletion:)"
             landmarkType = "7">
          </BreakpointContent>

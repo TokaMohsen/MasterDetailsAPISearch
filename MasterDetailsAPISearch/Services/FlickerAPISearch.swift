@@ -14,6 +14,7 @@ class FlickerAPISearch
     typealias FlickrResponse = (NSError?, [FlickerPicResponse]?) -> Void
     
     struct Keys {
+        // Replace it with your API KEY 
         static let flickrKey = "89f446cabf96cacbbd4612e9cd182194"
     }
     

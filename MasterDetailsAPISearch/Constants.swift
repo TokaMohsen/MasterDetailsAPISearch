@@ -8,7 +8,10 @@
 
 import Foundation
 
-let serviceFailureMsg = "service failed"
-let filterFailureMsg = "Keyword doesn't match any movie"
 let moviesJsonFileName = "movies"
-
+let customTableCellFileName = "CustomTableViewCell"
+let customCollectionCellFileName = "customCollectionViewCell"
+let moviesTableCellIdentifier = "cell"
+let imagesCollectionCellIdentifier = "imgCell"
+let segueIdentifierToDetailsVC = "showDetail"
+let initialFlickerAPIURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="
