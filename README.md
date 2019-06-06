@@ -6,8 +6,10 @@ This application is an example of searching the Flickr API for photos in Swift a
 Getting Started
 
 1.Clone the repo and run FlickrSearch.xcodeproj
+
 2.the only Pod used is SDWebImage
-3.Create a Flickr API key and replace placeholder with key in FlickrProvider.swift
+
+3.Create a Flickr API key and replace placeholder with key in FlickerAPISearch.swift
 The Flickr API
 
 
