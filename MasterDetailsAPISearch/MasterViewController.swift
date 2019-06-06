@@ -22,7 +22,7 @@ class MasterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         numberOfRowsPerSection = self.displayedObjects.count
         searchBar.delegate = self
         tableView.register(UINib(nibName: customTableCellFileName, bundle: nil), forCellReuseIdentifier: moviesTableCellIdentifier)
@@ -36,13 +36,25 @@ class MasterViewController: UITableViewController {
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MasterViewController.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    //Calls this function when the tap is recognized.
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
-
+    
     func loadData() {
         MoviesService.sharedInstance().loadcachedMovies(completionBlock: { (cachedData) in
             if let cachedMovieList = cachedData
@@ -119,7 +131,7 @@ class MasterViewController: UITableViewController {
             self.displayedObjects.updateValue(self.objects, forKey: Int.max)
             numberOfsections = 1
             hightOfsectionsHeader = 0.0
-
+            
         }
         self.tableView.reloadData()
     }
@@ -144,7 +156,7 @@ extension MasterViewController : UISearchBarDelegate
                 numberOfsections = searcResults.count
                 displayedObjects = searcResults
                 hightOfsectionsHeader = 50.0
-
+                
                 self.tableView.reloadData()
                 tableView.tableFooterView = UIView()
             }
